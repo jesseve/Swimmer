@@ -29,38 +29,52 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         //ONLY FOR TESTING
-        if(Input.GetMouseButtonDown(0))
-            manager.Swipe(480f);
-        return;
+        //if(Input.GetMouseButtonDown(0))
+        //    manager.Swipe(480f);
+        //return;
         //END OF TESTING
-        for (int i = 0; i < Input.touchCount; i++) {
-            if (Input.touches[i].phase == TouchPhase.Began) {
-                if (touch1Id < 0) {
+
+        if (LevelManager.instance.GetState() == State.Running)
+            RunningInput();
+    }
+
+    private void RunningInput() {
+        for (int i = 0; i < Input.touchCount; i++)
+        {
+            if (Input.touches[i].phase == TouchPhase.Began)
+            {
+                if (touch1Id < 0)
+                {
                     touch1 = Input.touches[i];
                     touch1Id = touch1.fingerId;
                     touch1StartTime = Time.time;
                     //Debug.Log("Touch1");
-                } else if(touch2Id < 0) {
+                }
+                else if (touch2Id < 0)
+                {
                     touch2 = Input.touches[i];
                     touch2Id = touch2.fingerId;
                     touch2StartTime = Time.time;
                     //Debug.Log("Touch2");
                 }
-            } else if(Input.touches[i].phase == TouchPhase.Ended) {
-                if (Input.touches[i].fingerId.Equals(touch1Id)) {
+            }
+            else if (Input.touches[i].phase == TouchPhase.Ended)
+            {
+                if (Input.touches[i].fingerId.Equals(touch1Id))
+                {
                     //Debug.Log("Distance: " + Vector2.Distance(touch1.position, Input.touches[i].position));
                     if (touch1.position.y > Input.touches[i].position.y)
                         manager.Swipe(touch1.position.y - Input.touches[i].position.y);
                     touch1Id = -1;
                 }
-                else if (Input.touches[i].fingerId.Equals(touch2Id)) {
+                else if (Input.touches[i].fingerId.Equals(touch2Id))
+                {
                     //Debug.Log("Distance: " + Vector2.Distance(touch2.position, Input.touches[i].position));
                     if (touch2.position.y > Input.touches[i].position.y)
                         manager.Swipe(touch2.position.y - Input.touches[i].position.y);
                     touch2Id = -1;
                 }
             }
-
         }
     }
 }

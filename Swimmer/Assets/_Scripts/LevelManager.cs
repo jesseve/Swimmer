@@ -2,14 +2,22 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class LevelManager : MonoBehaviour {
+public class LevelManager : GameManager {
+
+    public static LevelManager instance;
 
     private float startTime;
     public Text timerText;
 
+    void Awake() {
+        if (instance == null) {
+            instance = this;
+        }
+    }
+
 	// Use this for initialization
-	void Start () {
-        StartCoroutine("StartCounter");
+	void Start () {        
+        
 	}
 	
 	// Update is called once per frame
@@ -18,21 +26,21 @@ public class LevelManager : MonoBehaviour {
 	}
 
     private IEnumerator StartCounter() {
-        float timer = 4f;        
-        int change = 1;
-        timerText.text = (4-change).ToString();
-        float start = Time.time;
-        while (start + timer > Time.time) {
-            if (Time.time - start > change) {
-                change++;
-                ChangeNumber(change);
-            }
-            yield return null;   
+        for (int i = 3; i > 0; i--) {
+            timerText.text = i.ToString();
+            yield return new WaitForSeconds(1f);
         }
-        ChangeNumber(change);
+        timerText.text = "GO!";
+        SetState(State.Running);
+        yield return new WaitForSeconds(1f);
+        timerText.text = "";
     }
 
-    private void ChangeNumber(int n) {
-        timerText.text = (4 - n).ToString();
+    public void StartGame() {
+        StartCoroutine("StartCounter");
     }
+
+    public void GameOver() { }
+    public void QuitGame() { }
+    public void QuitApplication() { }
 }
