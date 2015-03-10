@@ -11,8 +11,6 @@ public class InputManager : MonoBehaviour
     //allow 2 touches at a time.
     private Touch touch1;
     private Touch touch2;
-    private float touch1StartTime;
-    private float touch2StartTime;
     private int touch1Id;
     private int touch2Id;
 
@@ -29,16 +27,23 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         //ONLY FOR TESTING
-        //if(Input.GetMouseButtonDown(0))
-        //    manager.Swipe(480f);
-        //return;
+        if(Input.GetMouseButtonDown(0))
+            manager.Swipe(480f);
+        return;
         //END OF TESTING
-
+        AllStates();
         if (LevelManager.instance.GetState() == State.Running)
             RunningInput();
     }
 
-    private void RunningInput() {
+    private void AllStates() {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            manager.PressBackButton();
+        }
+    }
+
+    private void RunningInput() {        
         for (int i = 0; i < Input.touchCount; i++)
         {
             if (Input.touches[i].phase == TouchPhase.Began)
@@ -47,14 +52,12 @@ public class InputManager : MonoBehaviour
                 {
                     touch1 = Input.touches[i];
                     touch1Id = touch1.fingerId;
-                    touch1StartTime = Time.time;
                     //Debug.Log("Touch1");
                 }
                 else if (touch2Id < 0)
                 {
                     touch2 = Input.touches[i];
                     touch2Id = touch2.fingerId;
-                    touch2StartTime = Time.time;
                     //Debug.Log("Touch2");
                 }
             }

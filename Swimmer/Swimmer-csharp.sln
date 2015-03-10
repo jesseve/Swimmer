@@ -1,8 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
-Project("{A24BA6BB-6F22-F061-AFA3-8FFDABAA3CC2}") = "Swimmer", "Assembly-CSharp-firstpass-vs.csproj", "{20A8AFAC-119E-D00F-186C-460B0CED12A8}"
-EndProject
 Project("{A24BA6BB-6F22-F061-AFA3-8FFDABAA3CC2}") = "Swimmer", "Assembly-CSharp-vs.csproj", "{16FA3932-1A4C-2D7C-A76B-9F96C019432E}"
 EndProject
 Project("{A24BA6BB-6F22-F061-AFA3-8FFDABAA3CC2}") = "Swimmer", "Assembly-CSharp-Editor-vs.csproj", "{F834511B-93D5-7408-DA82-71F43DB15191}"
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{20A8AFAC-119E-D00F-186C-460B0CED12A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{20A8AFAC-119E-D00F-186C-460B0CED12A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{20A8AFAC-119E-D00F-186C-460B0CED12A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{20A8AFAC-119E-D00F-186C-460B0CED12A8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{16FA3932-1A4C-2D7C-A76B-9F96C019432E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{16FA3932-1A4C-2D7C-A76B-9F96C019432E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16FA3932-1A4C-2D7C-A76B-9F96C019432E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -29,7 +23,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																														GlobalSection(MonoDevelopProperties) = preSolution
+																																																			GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1

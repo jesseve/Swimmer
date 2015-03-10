@@ -24,13 +24,11 @@ public class Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (rb.velocity.y > 0)
-        {
-            rb.gravityScale = 1;
-            //rb.velocity -= friction * Time.deltaTime;
+        {            
+            rb.velocity -= friction * Time.deltaTime;
         }
         else
-        {
-            rb.gravityScale = 0;
+        {            
             idle = true;
             SwitchSprite();
             rb.velocity = Vector2.zero;
