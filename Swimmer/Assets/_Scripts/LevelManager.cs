@@ -22,6 +22,11 @@ public class LevelManager : GameManager {
         }
     }
 
+    public void LogInSuccesfully()
+    {
+        uim.LogIn();
+    }
+
     private IEnumerator StartCounter() {
         SetState(State.Running);
         for (int i = 3; i > 0; i--) {
@@ -87,5 +92,10 @@ public class LevelManager : GameManager {
     }
     public void QuitApplication() {
         Application.Quit();
+    }
+
+    public string CalculateScore(float t)
+    {
+        return ((int)(1000.0 - t * 20f)).ToString();
     }
 }

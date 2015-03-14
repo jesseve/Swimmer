@@ -4,9 +4,12 @@ using System.Collections;
 
 public class UIManager : MonoBehaviour {
 
-    public GameObject confirmCanvas;
-    public GameObject menuCanvas;
-    public GameObject runningCanvas;
+    public Canvas confirmCanvas;
+    public Canvas menuCanvas;
+    public Canvas runningCanvas;
+    public Canvas loginCanvas;
+    public Canvas scoreCanvas;
+    public Canvas gameoverCanvas;
 
     public FacebookHandler fb;
 
@@ -23,6 +26,8 @@ public class UIManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Reset();
+
+        SetPanel(loginCanvas);
 
         LevelManager.instance.stateChanged += StateChange;
         LevelManager.instance.gameStarted += StartTimer;
@@ -43,6 +48,12 @@ public class UIManager : MonoBehaviour {
                 SetPanel(menuCanvas);
                 break;
         }
+    }
+
+    public void LogIn()
+    {
+        SetPanel(menuCanvas);
+        loginCanvas.enabled = false;
     }
 
     public void ShowConfrimBox() {
@@ -74,13 +85,18 @@ public class UIManager : MonoBehaviour {
     {
         StopTimer();
         if(FB.IsLoggedIn) fb.SetScore(timeElapsed);
+        SetPanel(gameoverCanvas);
+        Text score = gameoverCanvas.transform.Find("Score").GetComponent<Text>();
+        score.text = LevelManager.instance.CalculateScore(timeElapsed);
     }
 
-    private void SetPanel(GameObject go) {
-        confirmCanvas.SetActive(false);        
-        runningCanvas.SetActive(false);
-        menuCanvas.SetActive(false);
-        go.SetActive(true);
+    private void SetPanel(Canvas canvas) {
+        confirmCanvas.enabled = false;
+        runningCanvas.enabled = false;
+        menuCanvas.enabled = false;
+        gameoverCanvas.enabled = false;
+        scoreCanvas.enabled = false;
+        canvas.enabled = true;
     }
 
     private void RunningState() {        

@@ -27,9 +27,9 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         //ONLY FOR TESTING
-        if(Input.GetMouseButtonDown(0))
-            manager.Swipe(480f);
-        return;
+        //if(Input.GetMouseButtonDown(0))
+        //    manager.Swipe(480f);
+        //return;
         //END OF TESTING
         AllStates();
         if (LevelManager.instance.GetState() == State.Running)
